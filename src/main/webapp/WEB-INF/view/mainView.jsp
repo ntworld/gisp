@@ -8,6 +8,8 @@
     2019.2.21    KJE          최초 생성
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="include" tagdir="/WEB-INF/tags/include" %>
+
 <jsp:directive.include file="/WEB-INF/view/__system/taglibs.jsp" />
 <!DOCTYPE html>
 <html lang="en">
@@ -17,21 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <link rel="icon" href="<spring:url value="/favicon.ico" />">
     <title>Starter Template for Bootstrap</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
-    <link href="<spring:url value="/asset/css/common-daum.css" />" rel="stylesheet">
     
-    <script src="<spring:url value="/asset/bootstrap/js/ie-emulation-modes-warning.js" />"></script>
-    <script type="text/javascript" src='<spring:url value="/asset/js/jquery-3.2.1.min.js" />'></script>
-    <script type="text/javascript" src='<spring:url value="/asset/js/jquery.cookie.js" />'></script>
-    <script src="<spring:url value="/asset/bootstrap/js/ie10-viewport-bug-workaround.js" />"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9171188a2bc0e55ea3d6e5009b0e0dba&libraries=services"></script>
+    <include:include-main/>
     
 </head>
 <body>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.vng.sample.service.TestService;
+import kr.vng.sample.util.Constant;
 import kr.vng.sample.vo.TestVO;
 
 /**
@@ -34,8 +35,6 @@ public class MainController {
     @Autowired
     private TestService testService;
     
-    private static final String MAIN_PAGE = "mainView";
-     
     /**
      * 메인 페이지를 호출 한다.
      * @param
@@ -45,7 +44,7 @@ public class MainController {
     @RequestMapping(value = "/mainView.do", method = {RequestMethod.GET, RequestMethod.POST})
     public String main() throws Exception {
     	
-        return MAIN_PAGE;
+        return Constant.MAIN_PAGE;
         
     }
     

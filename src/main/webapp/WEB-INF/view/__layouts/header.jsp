@@ -14,7 +14,7 @@
     
     <form class="form-inline my-2 my-lg-0" onsubmit="searchPlaces(); return false;">
 		<input class="form-control mr-sm-4" type="text" value="" id="keyword" size="27" placeholder="키워드를 입력해 주세요"> 
-		<button id="btn-search" class="btn btn-success my-2 my-sm-0" type="submit">검색하기</button>
+		<button id="btn-search" class="btn btn-warning my-2 my-sm-0" type="submit">검색하기</button>
 	</form>
   </div>
 </nav>
