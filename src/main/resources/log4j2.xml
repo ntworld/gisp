@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+		<RollingFile name="rollingFile" fileName="c:/tmp/log/test.log" filePattern="c:/tmp/log/test.log.%d{yyyy-MM-dd}" append="false">
+			<PatternLayout pattern="%d %5p [%c] %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+			</Policies>
+		</RollingFile>
+    </Appenders>
+    
+    <Loggers>
+    
+        <Logger name="egovframework" additivity="false" level="error">
+            <AppenderRef ref="console" />
+        </Logger>
+        
+        <Logger name="org.springframework" additivity="false" level="info">
+            <AppenderRef ref="console" />
+            <!-- <AppenderRef ref="rollingFile" /> -->
+        </Logger>
+        
+        <!--  JDBC LOG LEVEL  -->
+	    <Logger name="jdbc.connection" additivity="false" level="info">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+	    <Logger name="jdbc.sqlonly" additivity="false" level="info">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+		<Logger name="jdbc.resultsettable" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+	    <!-- 정렬되지 않은 쿼리 로그 -->
+	    <Logger name="jdbc.sqltiming" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+	    <!-- ResultSet을 제외한 모든 JDBC 호출 정보 -->
+	    <Logger name="jdbc.audit" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger> 
+	    
+		<!--  ResultSet을 포함한 모든 JDBC 호출 정보 -->
+	    <Logger name="jdbc.resultset" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+	    <!--  GzipFilter  -->
+	    <Logger name="net.sf.ehcache.constructs.web.filter.Filter" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+	    <Logger name="net.sf.ehcache.constructs.web.filter.GzipFilter" additivity="false" level="error">
+	        <appender-ref ref="console" />
+	    </Logger>
+	    
+        <Root level="info">
+            <AppenderRef ref="console" />
+			<!-- <AppenderRef ref="rollingFile" /> -->
+        </Root>
+        
+    </Loggers>
+</Configuration>

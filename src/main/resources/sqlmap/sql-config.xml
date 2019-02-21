@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+    <typeAliases>
+		<!-- mybatis에서 공통의 자바타입에 대해서는 내장된 타입 별칭이 있지만 명시적으로 대표적인 자바타입을 재정의 -->
+    	<typeAlias type="java.lang.String" alias="string" />
+    	<typeAlias type="java.lang.Integer" alias="integer" />
+    	<typeAlias type="java.util.HashMap" alias="hashMap" />
+    	<typeAlias type="java.util.Map" alias="map" />
+
+		<!-- custom TypeAliase  -->    	
+		<typeAlias alias="testVO" type="kr.vng.sample.vo.TestVO"/>
+    	
+    </typeAliases>
+</configuration>

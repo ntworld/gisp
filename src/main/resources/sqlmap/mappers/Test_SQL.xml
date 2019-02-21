@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="accountMapper">
+
+	<resultMap id="test" type="kr.vng.sample.vo.TestVO">
+		<result property="id" column="id"/>
+		<result property="place_name" column="place_name"/>
+		<result property="address" column="address"/>
+		<result property="facility_phone" column="facility_phone"/>
+		<result property="x_coord" column="x_coord"/>
+		<result property="y_coord" column="y_coord"/>
+	</resultMap>
+
+	<select id="selectTestList" parameterType="testVO" resultType="hashMap">
+		SELECT
+			id, place_name, address, facility_phone, x_coord, y_coord
+		FROM
+		<choose>
+			<when test="category.equals('hanam_wifi')">
+				hanam_wifi
+			</when>
+			<otherwise>
+				jeonju_cctv
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+	
+    <alias name="dataSource" alias="dataSource" />
+   	<beans profile="default, local, dev, stg, prd">
+	    <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+			<property name="driverClassName" value="#{config['jdbc.driver']}" />
+			<property name="url" value="#{config['jdbc.url']}" />
+			<property name="username" value="#{config['jdbc.username']}" />
+			<property name="password" value="#{config['jdbc.password']}" />
+	        <property name="initialSize" value="5"/>
+	        <property name="maxActive" value="50"/>
+	        <property name="minIdle" value="5"/>
+	        <property name="maxIdle" value="10"/>
+	        <property name="testWhileIdle" value="true"/>
+	        <property name="testOnBorrow" value="true"/>
+	        <property name="validationQuery" value="select 1"/>
+	        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+	        <property name="minEvictableIdleTimeMillis" value="600000"/>
+	    </bean>
+	    
+    	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+	        <constructor-arg ref="dataSourceSpied" />
+	        <property name="logFormatter">
+	            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+	                <property name="loggingType" value="MULTI_LINE" />
+	                <property name="sqlPrefix" value="SQL :         "/>
+	            </bean>
+	        </property>
+	    </bean>	
+    </beans>
+	    
+</beans>
