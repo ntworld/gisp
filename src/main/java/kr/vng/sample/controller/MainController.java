@@ -15,17 +15,15 @@ import kr.vng.sample.vo.TestVO;
 /**
 * 인덱스 관리 콘트롤러 클래스
 * 
-* @author VNG YSH
-* @since 2017. 5. 16.
-* @version 1.0
-* @see
+* @author VNG KJE
+* @since 2019. 2. 21.
 * 
 *<pre>
 * << 개정이력(Modification Information) >>
 *   
 *   수정일                수정자     수정내용
 *  -------------- ------- ------------------
-*  2017. 5. 16.    YSH      최초생성
+*  2019. 2. 21.   KJE      최초생성
 * 
 *</pre>
 */
@@ -53,7 +51,7 @@ public class MainController {
     
     /**
      * db 데이터 가져오기
-     * @param
+     * @param category
      * @return List
      * @throws Exception
      */

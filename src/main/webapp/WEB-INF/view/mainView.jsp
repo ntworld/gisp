@@ -5,10 +5,7 @@
  
       수정일             수정자           수정내용
     -----------  --------    ---------------------------
-    2017.05.16   YSH          최초 생성
- 
-    author   : VNG YSH 
-    since    : 20117.05.16 
+    2019.2.21    KJE          최초 생성
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:directive.include file="/WEB-INF/view/__system/taglibs.jsp" />
