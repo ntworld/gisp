@@ -20,6 +20,7 @@
 
 		<!-- custom TypeAliase  -->    	
 		<typeAlias alias="testVO" type="kr.vng.sample.vo.TestVO"/>
+		<typeAlias alias="accountVO" type="kr.vng.sample.vo.AccountVO"/>
     	
     </typeAliases>
 </configuration>

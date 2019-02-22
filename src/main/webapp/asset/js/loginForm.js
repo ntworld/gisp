@@ -12,12 +12,14 @@ $(document).ready(function() {
 			'height': panelTwo
 		}, 200);
 	});
+	
 	$('.form-toggle').on('click', function(e) {
-	e.preventDefault();
-	$(this).removeClass('visible');
-	$('.form-panel.one').removeClass('hidden');
-	$('.form-panel.two').removeClass('active');
-	$('.form').animate({
+		e.preventDefault();
+		
+		$(this).removeClass('visible');
+		$('.form-panel.one').removeClass('hidden');
+		$('.form-panel.two').removeClass('active');
+		$('.form').animate({
 			'height': panelOne
 		}, 200);
 	});

@@ -9,10 +9,10 @@
       <h1>Account Login</h1>
     </div>
     <div class="form-content">
-      <form>
+      <form action="/login.do" method="get">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required="required"/>
+          <label for="userId">Username</label>
+          <input type="text" id="userId" name="userId" required="required"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -26,7 +26,7 @@
 			<a class="form-recovery" href="#">Forgot Password?</a>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">Log In</button>
+          <button id="btn-login" class="btn btn-primary" type="button">Log In</button>
         </div>
       </form>
     </div>

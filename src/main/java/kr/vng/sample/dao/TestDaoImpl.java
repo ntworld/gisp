@@ -15,6 +15,6 @@ public class TestDaoImpl implements TestDao {
 	private SqlSession sqlSession;
 	
 	public List<TestVO> selectTestList(final TestVO category) {
-		return sqlSession.selectList("accountMapper.selectTestList", category);
+		return sqlSession.selectList("test.selectTestList", category);
 	}
 }
