@@ -10,7 +10,6 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/spring/context-sqlMap.xml</config>
-		<config>src/main/resources/spring/context-transaction.xml</config>
 		<config>src/main/resources/spring/context-properties.xml</config>
 		<config>src/main/resources/spring/context-common.xml</config>
 		<config>src/main/resources/spring/context-datasource.xml</config>

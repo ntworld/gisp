@@ -1,12 +1,11 @@
 package kr.vng.sample.controller;
 
-import java.util.Objects;
+import java.util.Optional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +36,7 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 	
-	@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/loginPage.do", method = RequestMethod.GET)
 	public String loginPage() {
 		
 		return Constant.LOGIN_PAGE;
@@ -51,35 +50,43 @@ public class AccountController {
 		
 	}
 	
-	@RequestMapping(value = "/login.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginProcess(
 			@RequestParam(value = "userId", required = true) final String userId,
 			@RequestParam(value = "password", required = true) final String password,
-			final HttpSession session, 
-			final HttpServletResponse response,
+			final HttpSession session,
+			final HttpServletResponse response, 
 			final AccountVO isCookie) throws Exception {
+
+		// Url
+		String returnUrl = Constant.REDIRECT + Constant.MAIN_PAGE;
 		
-		if(Objects.nonNull(session.getAttribute("login"))) 
-			session.removeAttribute("login");
-		
+		// 사용자 정보
 		final AccountVO accountVO = accountService.loginInfo(userId);
 		
-		if(Objects.nonNull(accountVO) && StringUtils.equals(accountVO.getPassword(), password)) {
-			
-			session.setAttribute("login", accountVO);
-			
-			if(isCookie.isUseCookie()) {
-				final Cookie cookie = new Cookie("loginCookie", session.getId());
-				
-				cookie.setPath("/");
-				cookie.setMaxAge(Constant.COOKIE_AMOUNT);
-				
-			}
-			
-		}
+		Optional.ofNullable(session.getAttribute("login")) // 세션에 login이 존재할 경우 삭제
+			.ifPresent(removeSession -> session.removeAttribute("login"));
 		
+		Optional.ofNullable(accountVO.getId()) // 로그인이 안됐을 경우 
+			.orElse(returnUrl = Constant.REDIRECT + Constant.LOGIN_PAGE);
 		
-		return "";
+		Optional.ofNullable(password.equals(accountVO.getPassword())) // 로그인 성공 후 쿠기생성
+			.ifPresent(setCookie -> setCookie(session, response, isCookie, userId));
+				
+		return returnUrl;
 	}
 	
+	private void setCookie(final HttpSession session, final HttpServletResponse response, final AccountVO isCookie, final String userId) {
+		
+		session.setAttribute("login", userId);
+		
+		if(isCookie.isUseCookie()) {
+			final Cookie cookie = new Cookie("loginCookie", session.getId());
+			
+			cookie.setPath("/");
+			cookie.setMaxAge(Constant.COOKIE_AMOUNT);
+			
+			response.addCookie(cookie);
+		} 
+	}
 }
