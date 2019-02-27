@@ -8,10 +8,10 @@
 		<result property="email" column="email"/>
 	</resultMap>
 	
-    <select id="login" parameterType="string" resultType="AccountVO">
-        SELECT * 
+    <select id="login" resultType="AccountVO">
+        SELECT userid, password, email
         FROM account 
-        WHERE id = #{value} 
+        WHERE userid = #{userid} 
     </select>
 
 	<insert id="register" parameterType="AccountVO">

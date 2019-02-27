@@ -63,7 +63,7 @@
 		페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.<br>
 		메인화면으로 이동해주시기 바랍니다. 
 	</p>
-	<div class="btn_center"><a href="<spring:url value="/mainView.do" />" class="btn_st2">메인화면으로 이동</a></div>
+	<div class="btn_center"><a href="<spring:url value="/loginPage.do" />" class="btn_st2">메인화면으로 이동</a></div>
 </div>
 <!-- //content -->
 </body>

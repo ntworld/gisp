@@ -49,7 +49,7 @@
 	    <div id="category_wrap">
 	    	<div class="custom-control custom-checkbox custom-control-inline">
 				<input type="checkbox" class="custom-control-input" name="category" id="hanam_wifi" value="hanam_wifi">
-				<label class="custom-control-label" for="hanam_wifi">하남시 무료 Wi-Fi</label>
+				<label class="custom-control-label" for="hanam_wifi">하남시 무료 Wifi</label>
 			</div>
 	    	<div class="custom-control custom-checkbox custom-control-inline">
 				<input type="checkbox" class="custom-control-input" name="category" id="jeonju_cctv" value="jeonju_cctv">

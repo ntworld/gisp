@@ -17,8 +17,8 @@ public class AccountDaoImpl implements AccountDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public AccountVO loginInfo(final String userid) throws Exception {
-		return sqlSession.selectOne("accountMapper.loginInfo", userid);
+	public AccountVO login(final String userid) throws Exception {	
+		return sqlSession.selectOne("accountMapper.login", userid);
 	}
 
 	@Override
@@ -30,14 +30,14 @@ public class AccountDaoImpl implements AccountDao {
         map.put("next", next);
          
         // 아래가 수행되면서, 사용자 테이블에 세션id와 유효시간이 저장됨
-        sqlSession.update("accountMapper.keepLogin",map);
+        sqlSession.update("accountMapper.keepLogin", map);
 	}
 
 	@Override
 	public AccountVO checkUserWithSessionKey(final String sessionId) {
 		
 		// 유효시간이 남아있고(>now()) 전달받은 세션 id와 일치하는 사용자 정보를 꺼낸다.
-        return sqlSession.selectOne("accountMapper.checkUserWithSessionKey",sessionId);
+        return sqlSession.selectOne("accountMapper.checkUserWithSessionKey", sessionId);
 	}
 
 	@Override

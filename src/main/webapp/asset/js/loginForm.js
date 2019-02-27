@@ -30,7 +30,7 @@ $(document).ready(function() {
 		var password = $('#register-password').val(),
 			cPassword = $('#cpassword').val();
 		
-		if(password == cPassword) {
+		if (password == cPassword) {
 			$('#form-register').submit();
 			alert('회원가입 완료!!');
 		} else {
@@ -39,4 +39,15 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	
+	$('#btn-login').on('click', function() {
+		
+		if ($('#userid').val() != null && $('#password').val()) {
+			$('#form-login').submit();
+		} else {
+			$('#form-login')[0].reset();
+			alert('아이디와 비밀번호를 확인해 주세요.');
+			return false;
+		}
+	})
 });	

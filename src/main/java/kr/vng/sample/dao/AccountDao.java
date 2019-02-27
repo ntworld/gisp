@@ -11,7 +11,7 @@ public interface AccountDao {
      * @return List<AccountVO>
      * @throws Exception
      */
-	public AccountVO loginInfo(final String userId) throws Exception;
+	public AccountVO login(final String userid) throws Exception;
 	
     /**
      * 로그인 유지에 필요한 정보 호출

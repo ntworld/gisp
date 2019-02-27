@@ -15,8 +15,8 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDao accountDao;
 	
 	@Override
-	public AccountVO loginInfo(final String userid) throws Exception {
-		return accountDao.loginInfo(userid);
+	public AccountVO login(final String userid) throws Exception {
+		return accountDao.login(userid);
 	}
 
 	@Override

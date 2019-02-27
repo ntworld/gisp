@@ -9,7 +9,7 @@
       <h1>Account Login</h1>
     </div>
     <div class="form-content">
-      <form action="/login.do" method="get">
+      <form id="form-login" action="/loginProcess.do" method="post">
         <div class="form-group">
           <label for="userId">Username</label>
           <input type="text" id="userid" name="userid" required="required"/>
@@ -20,8 +20,8 @@
         </div>
         <div class="form-group">
 			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" name="recovery" id="recovery">
-				<label class="custom-control-label" for="recovery" id="label-recovery">Remember Me</label>
+				<input type="checkbox" class="custom-control-input" name="useCookie" id="useCookie" value="true">
+				<label class="custom-control-label" for="useCookie" id="label-recovery">Remember Me</label>
 			</div>
 			<a class="form-recovery" href="#">Forgot Password?</a>
         </div>
@@ -39,7 +39,7 @@
       <form id="form-register" action="/register.do" method="post">
         <div class="form-group">
           <label for="userid">Username</label>
-          <input type="text" id="userid" name="userid" required="required"/>
+          <input type="text" id="register-userid" name="userid" required="required"/>
         </div>
         <div class="form-group">
           <label for="register-password">Password</label>
