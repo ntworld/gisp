@@ -2,7 +2,6 @@ package kr.vng.sample.controller;
 
 import java.sql.Date;
 import java.util.Objects;
-import java.util.Optional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
