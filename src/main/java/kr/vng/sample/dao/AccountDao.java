@@ -28,4 +28,10 @@ public interface AccountDao {
      */
 	public AccountVO checkUserWithSessionKey(final String sessionId);
 
+    /**
+     * 유저 등록 
+     * @param accountVO
+     * @throws Exception
+     */
+	public int insertAccount(final AccountVO accountVO);
 }

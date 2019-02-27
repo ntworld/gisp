@@ -17,15 +17,15 @@ public class AccountDaoImpl implements AccountDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public AccountVO loginInfo(final String userId) throws Exception {
-		return sqlSession.selectOne("accountMapper.loginInfo", userId);
+	public AccountVO loginInfo(final String userid) throws Exception {
+		return sqlSession.selectOne("accountMapper.loginInfo", userid);
 	}
 
 	@Override
-	public void keepLogin(final String userId, final String sessionId, final Date next) throws Exception {
+	public void keepLogin(final String userid, final String sessionId, final Date next) throws Exception {
 		
         final Map<String, Object> map = new HashMap<String,Object>();
-        map.put("userId", userId);
+        map.put("userid", userid);
         map.put("sessionId", sessionId);
         map.put("next", next);
          
@@ -38,6 +38,11 @@ public class AccountDaoImpl implements AccountDao {
 		
 		// 유효시간이 남아있고(>now()) 전달받은 세션 id와 일치하는 사용자 정보를 꺼낸다.
         return sqlSession.selectOne("accountMapper.checkUserWithSessionKey",sessionId);
+	}
+
+	@Override
+	public int insertAccount(AccountVO accountVO) {
+		return sqlSession.insert("accountMapper.register", accountVO);
 	}
 
 }

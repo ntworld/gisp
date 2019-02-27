@@ -23,4 +23,20 @@ $(document).ready(function() {
 			'height': panelOne
 		}, 200);
 	});
+	
+	$('#btn-register').on('click', function(e) {
+		e.preventDefault();
+		
+		var password = $('#register-password').val(),
+			cPassword = $('#cpassword').val();
+		
+		if(password == cPassword) {
+			$('#form-register').submit();
+			alert('회원가입 완료!!');
+		} else {
+			$('#cpassword').val('');
+			alert('비밀번호가 맞지 않습니다. 다시 확인해 주세요.');
+			return false;
+		}
+	});
 });	

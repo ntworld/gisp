@@ -15,18 +15,23 @@ public class AccountServiceImpl implements AccountService {
 	private AccountDao accountDao;
 	
 	@Override
-	public AccountVO loginInfo(final String userId) throws Exception {
-		return accountDao.loginInfo(userId);
+	public AccountVO loginInfo(final String userid) throws Exception {
+		return accountDao.loginInfo(userid);
 	}
 
 	@Override
-	public void keepLogin(final String id, final String sessionId, final Date next) throws Exception {
-		accountDao.keepLogin(id, sessionId, next);
+	public void keepLogin(final String userid, final String sessionId, final Date next) throws Exception {
+		accountDao.keepLogin(userid, sessionId, next);
 	}
 
 	@Override
 	public AccountVO checkUserWithSessionKey(final String sessionId) {
 		return accountDao.checkUserWithSessionKey(sessionId);
+	}
+
+	@Override
+	public int insertAccount(AccountVO accountVO) {
+		return accountDao.insertAccount(accountVO);
 	}
 
 }

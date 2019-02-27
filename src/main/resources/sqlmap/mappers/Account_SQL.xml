@@ -3,7 +3,7 @@
 <mapper namespace="accountMapper">
 
 	<resultMap id="accountResult" type="kr.vng.sample.vo.AccountVO">
-		<result property="id" column="id"/>
+		<result property="userid" column="userid"/>
 		<result property="password" column="password"/>
 		<result property="email" column="email"/>
 	</resultMap>
@@ -15,8 +15,8 @@
     </select>
 
 	<insert id="register" parameterType="AccountVO">
-		INSERT INTO account (id, password, email)
-		VALUES (#{id}, #{password}, #{email})
+		INSERT INTO account (userid, password, email)
+		VALUES (#{userid}, #{password}, #{email})
 	</insert>
 	
     <!--
@@ -25,7 +25,7 @@
     <update id="keepLogin">
         UPDATET account 
         SET sessionKey = #{sessionId}, sessionLimit = #{next} 
-        WHERE id = #{userId}
+        WHERE id = #{userid}
     </update>
      
     <!--

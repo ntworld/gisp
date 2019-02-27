@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class AccountVO {
 	
-	private String id;
+	private String userid;
 	private String password;
 	private String email;
 	private String sessionkey;
@@ -29,11 +29,11 @@ public class AccountVO {
 	public void setSessionlimit(Date sessionlimit) {
 		this.sessionlimit = sessionlimit;
 	}
-	public String getId() {
-		return id;
+	public String getUserid() {
+		return userid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getPassword() {
 		return password;

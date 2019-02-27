@@ -12,7 +12,7 @@
       <form action="/login.do" method="get">
         <div class="form-group">
           <label for="userId">Username</label>
-          <input type="text" id="userId" name="userId" required="required"/>
+          <input type="text" id="userid" name="userid" required="required"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -36,14 +36,14 @@
       <h1>Register Account</h1>
     </div>
     <div class="form-content">
-      <form>
+      <form id="form-register" action="/register.do" method="post">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required="required"/>
+          <label for="userid">Username</label>
+          <input type="text" id="userid" name="userid" required="required"/>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required="required"/>
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" name="password" required="required"/>
         </div>
         <div class="form-group">
           <label for="cpassword">Confirm Password</label>
@@ -54,7 +54,7 @@
           <input type="email" id="email" name="email" required="required"/>
         </div>
         <div class="form-group">
-          <button class="btn btn-warning" type="submit">Register</button>
+          <button class="btn btn-warning" id="btn-register">Register</button>
         </div>
       </form>
     </div>
