@@ -21,9 +21,13 @@ function testListData(category) {
         	"category": category 
         },
         dataType : "json",
-        success: function(data, status){ //장소검색이 완료됐을 때
+        success: function(data, status){ //장소검색이 성공
         	displayTestListData(data, category);
         },
+        complete: function() {
+    		$('.overlay-loader').fadeIn('fast');
+			load();
+		},
         error: function(xhr, status, error) {
         	console.log(error);
         }  
@@ -261,6 +265,24 @@ function zoomIn() {
 // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수
 function zoomOut() {
 	map.setLevel(map.getLevel() + 1);
+};
+
+function load(){
+	$(function() {
+		setTimeout(function(){
+			$('.loaderContainer').addClass('load');
+		}, 500);
+		setTimeout(function(){
+			$('.loaderContainer').removeClass('load');
+			removeOverlay();
+		}, 3200);
+	});
+};
+
+function removeOverlay() {
+	$(function() {
+		$('.overlay-loader').fadeOut('slow');
+	});
 };
 
 //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.vng.sample.service.TestService;
 import kr.vng.sample.util.Constant;
+import kr.vng.sample.vo.AccountVO;
 import kr.vng.sample.vo.TestVO;
 
 /**
@@ -29,7 +30,7 @@ import kr.vng.sample.vo.TestVO;
 *</pre>
 */
 @Controller
-public class MainController {
+public class MainController extends AbstractController {
 
     /** testService 리소스 주입 */
     @Autowired
@@ -55,8 +56,8 @@ public class MainController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value = "/selectTestList.do", method = { RequestMethod.GET })
-    public List<TestVO> selectTestList(@RequestParam(value="category", required = false) final String category) throws Exception{
+    @RequestMapping(value = "/selectTestList.do", method = RequestMethod.GET)
+    private List<TestVO> selectTestList(@RequestParam(value="category", required = false) final String category) throws Exception{
     	
     	final TestVO vo = new TestVO();
     	vo.setCategory(category);
@@ -64,4 +65,11 @@ public class MainController {
 		return testService.selectTestList(vo);
     }
 
+	@ResponseBody
+	@RequestMapping(value = "/getAccountData.do", method = RequestMethod.GET)
+	private AccountVO getAccountData(@RequestParam(value = "userid") final String userid) throws Exception {
+		
+		return accountService.login(userid);
+	}
+	
 }

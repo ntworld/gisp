@@ -24,8 +24,7 @@ $(document).ready(function() {
 		}, 200);
 	});
 	
-	$('#btn-register').on('click', function(e) {
-		e.preventDefault();
+	$('#btn-register').on('click', function() {
 		
 		var password = $('#register-password').val(),
 			cPassword = $('#cpassword').val();
@@ -42,12 +41,34 @@ $(document).ready(function() {
 	
 	$('#btn-login').on('click', function() {
 		
-		if ($('#userid').val() != null && $('#password').val()) {
-			$('#form-login').submit();
-		} else {
-			$('#form-login')[0].reset();
-			alert('아이디와 비밀번호를 확인해 주세요.');
-			return false;
-		}
-	})
+		$.ajax({
+			url: "/getAccountData.do",
+			type: "GET",
+			data: {
+				"userid" : $('#userid').val()
+			},
+			dataType: "json",
+			success: function(accountData) {
+				
+				if ($('#password').val() != accountData.password) {
+					getLoginAlert();
+					return false;
+				}
+				
+				$('#form-login').submit();
+			},
+	        error: function() {
+	        	getLoginAlert();
+	        }
+		});
+	});
+	
+	function getLoginAlert() {
+		$('#login-alert').append(
+				'<div class="alert alert-dismissible alert-danger">' + 
+				'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+				'<strong>경고!</strong>아이디와 비밀번호를 확인해 주세요.</div>');
+		
+		$('#form-login')[0].reset();
+	};
 });	

@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Starter Template for Bootstrap</title>
+    <title>Practice GIS</title>
     
     <include:include-main/>
     
@@ -29,6 +29,16 @@
     <!--  header  -->
     <jsp:directive.include file="/WEB-INF/view/__layouts/header.jsp" />
     <!--  // header  -->
+    
+	<div class='overlay-loader'>
+		<div class='loaderContainer'>
+			<div class='crs topr'></div>
+			<div class='crs topl'></div>
+			<div class='crs botr'></div>
+			<div class='crs botl'></div>
+			<div class='dot'></div>
+		</div>
+	</div>
     
     <!-- .container -->
     <div class="map_container">
@@ -58,7 +68,7 @@
 	    </div>
 	</div>
     <!-- /.container -->
-    
+
     <script src="<spring:url value="/asset/js/common-daum.js" />"></script>
 </body>
 </html>

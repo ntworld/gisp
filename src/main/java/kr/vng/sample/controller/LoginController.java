@@ -78,9 +78,7 @@ public class LoginController extends AbstractController {
 
 	/**
 	 * 로그아웃
-	 * 
-	 * @param session,
-	 *            response, request
+	 * @param session, response, request
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/logout.do")
@@ -90,8 +88,6 @@ public class LoginController extends AbstractController {
 		final Object obj = session.getAttribute(Constant.LOGIN);
 
 		if (Objects.nonNull(obj)) {
-
-			final AccountVO accountVO = (AccountVO) obj;
 
 			// null이 아닐 경우 제거
 			session.removeAttribute(Constant.LOGIN);
@@ -107,7 +103,7 @@ public class LoginController extends AbstractController {
 				response.addCookie(loginCookie);
 
 				// 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
-				accountService.keepLogin(accountVO.getUserid(), session.getId(), new Date(System.currentTimeMillis()));
+				accountService.keepLogin((String) obj, session.getId(), new Date(System.currentTimeMillis()));
 			}
 		}
 		return Constant.REDIRECT_LOGIN_PAGE;
@@ -115,9 +111,7 @@ public class LoginController extends AbstractController {
 
 	/**
 	 * 쿠키세팅
-	 * 
-	 * @param userId,
-	 *            session, response, isCookie, accountVO
+	 * @param userId, session, response, isCookie, accountVO
 	 */
 	private void setCookie(final HttpSession session, final HttpServletResponse response, final AccountVO isCookie, final AccountVO accountVO) {
 

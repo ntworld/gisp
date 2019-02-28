@@ -1,6 +1,9 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<div id="login-alert">
+</div>
+
 <!-- Form-->
 <div class="form">
   <div class="form-toggle"></div>
