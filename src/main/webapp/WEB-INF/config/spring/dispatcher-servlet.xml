@@ -14,6 +14,13 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/mainView.do"/>
+			<bean id="loginInterceptor" class="kr.vng.sample.util.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
     <!-- 서블릿컨네이너상의 exception에 대한 오류 페이지를 연결하는 mvc 설정 -->
     <!-- web.xml에 설정된 오류페이지보다 우선순위 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

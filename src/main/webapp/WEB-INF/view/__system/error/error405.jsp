@@ -61,7 +61,7 @@
 	<p class="svcmt2">
 		메인화면으로 이동해주시기 바랍니다.
 	</p>
-	<div class="btn_center"><a href="<spring:url value="/loginPage.do" />" class="btn_st2">메인화면으로 이동</a></div>
+	<div class="btn_center"><a href="<spring:url value="/mainView.do" />" class="btn_st2">메인화면으로 이동</a></div>
 </div>
 <!-- //content -->
 </body>

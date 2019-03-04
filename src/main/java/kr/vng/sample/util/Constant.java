@@ -12,6 +12,7 @@ public final class Constant {
 		public static final String LOGIN_COOKIE = "loginCookie";
 
 		public static final String SEND_REDIRECT_LOGIN_PAGE = "/loginPage.do";
+		public static final String SEND_REDIRECT_MAIN_PAGE = "/mainView.do";
 		
 		public static final int COOKIE_AMOUNT = 60 * 60 * 24 * 7;
 }

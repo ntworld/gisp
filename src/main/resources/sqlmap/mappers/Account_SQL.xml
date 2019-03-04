@@ -23,9 +23,9 @@
         로그인된 경우 해당 세션id와 유효시간을 사용자 테이블에 세팅
      -->
     <update id="keepLogin">
-        UPDATET account 
+        UPDATE account 
         SET sessionKey = #{sessionId}, sessionLimit = #{next} 
-        WHERE id = #{userid}
+        WHERE userid = #{userid}
     </update>
      
     <!--
