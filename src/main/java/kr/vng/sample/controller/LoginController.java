@@ -55,25 +55,16 @@ public class LoginController extends AbstractController {
 			final HttpServletResponse response, 
 			final AccountVO isCookie) throws Exception {
 
-		// Url
-		String returnUrl = Constant.REDIRECT_MAIN_PAGE;
-		
 		// 사용자 정보
 		final AccountVO accountVO = accountService.login(isCookie.getUserid());
 		
 		if (Objects.nonNull(session.getAttribute(Constant.LOGIN)))
 			session.removeAttribute(Constant.LOGIN);
 		
-		if (Objects.nonNull(accountVO.getUserid()) && StringUtils.equals(isCookie.getPassword(), accountVO.getPassword())) {
-			
+		if (loginValidation(accountVO, isCookie)) 
 			setCookie(session, response, isCookie, accountVO);
 			
-		} else {
-			
-			returnUrl = Constant.REDIRECT_LOGIN_PAGE;
-		}
-		
-		return returnUrl;
+		return loginValidation(accountVO, isCookie) ? Constant.REDIRECT_MAIN_PAGE : Constant.REDIRECT_LOGIN_PAGE;
 	}
 
 	/**
@@ -112,8 +103,9 @@ public class LoginController extends AbstractController {
 	/**
 	 * 쿠키세팅
 	 * @param userId, session, response, isCookie, accountVO
+	 * @throws Exception 
 	 */
-	private void setCookie(final HttpSession session, final HttpServletResponse response, final AccountVO isCookie, final AccountVO accountVO) {
+	private void setCookie(final HttpSession session, final HttpServletResponse response, final AccountVO isCookie, final AccountVO accountVO) throws Exception {
 
 		session.setAttribute(Constant.LOGIN, isCookie.getUserid());
 
@@ -126,12 +118,16 @@ public class LoginController extends AbstractController {
 			response.addCookie(cookie);
 
 			// 현재 세션 id와 유효시간을 사용자 테이블에 저장한다.
-			try {
-				accountService.keepLogin(accountVO.getUserid(), session.getId(),
-						new Date(System.currentTimeMillis() + (1000 * Constant.COOKIE_AMOUNT)));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			accountService.keepLogin(accountVO.getUserid(), session.getId(), new Date(System.currentTimeMillis() + (1000 * Constant.COOKIE_AMOUNT)));
+			
 		}
+	}
+	
+	/**
+	 * 아이디, 비밀번호 유효성체크
+	 * @param isCookie, accountVO
+	 */
+	private boolean loginValidation(final AccountVO accountVO, final AccountVO isCookie) {
+		return Objects.nonNull(accountVO.getUserid()) && StringUtils.equals(isCookie.getPassword(), accountVO.getPassword());
 	}
 }
