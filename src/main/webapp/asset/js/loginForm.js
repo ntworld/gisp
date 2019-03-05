@@ -66,8 +66,9 @@ $(document).ready(function() {
 	function getLoginAlert() {
 		$('#login-alert').append(
 				'<div class="alert alert-dismissible alert-danger">' + 
+				'<span class="badge badge-pill badge-danger">경고</span>' +
 				'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-				'<strong>경고!</strong>아이디와 비밀번호를 확인해 주세요.</div>');
+				' 아이디와 비밀번호를 확인해 주세요.</div>');
 		
 		$('#form-login')[0].reset();
 	};

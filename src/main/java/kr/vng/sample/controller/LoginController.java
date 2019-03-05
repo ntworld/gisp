@@ -23,13 +23,13 @@ import kr.vng.sample.vo.AccountVO;
  * @author VNG KJE
  * @since 2019. 2. 21.
  * 
- *        <pre>
-*
-*   수정일                수정자     수정내용
-*  -------------- ------- ------------------
-*  2019. 2. 21.   KJE      최초생성
+ *<pre>
+ *
+ *   수정일                수정자     수정내용
+ *  -------------- ------- ------------------
+ *  2019. 2. 21.   KJE      최초생성
  * 
- *        </pre>
+ * </pre>
  */
 @Controller
 public class LoginController extends AbstractController {

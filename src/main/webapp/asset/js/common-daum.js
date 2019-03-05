@@ -25,7 +25,6 @@ function testListData(category) {
         	displayTestListData(data, category);
         },
         complete: function() {
-    		$('.overlay-loader').fadeIn('fast');
 			load();
 		},
         error: function(xhr, status, error) {
@@ -332,6 +331,7 @@ $(document).ready(function(){
 	$('input:checkbox[name="category"]').click(function() {
 		$('input:checkbox[name="category"]').each(function() {
 			if(this.checked) {
+	        	$('.overlay-loader').fadeIn('fast');
 				testListData(this.value);
 			} else {
 				removeMarker();

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.vng.sample.util.Constant;
 import kr.vng.sample.vo.TestVO;
 
 @Repository
@@ -15,6 +16,6 @@ public class TestDaoImpl implements TestDao {
 	private SqlSession sqlSession;
 	
 	public List<TestVO> selectTestList(final TestVO category) {
-		return sqlSession.selectList("test.selectTestList", category);
+		return sqlSession.selectList(Constant.Test.SELECT_TEST_LIST, category);
 	}
 }
