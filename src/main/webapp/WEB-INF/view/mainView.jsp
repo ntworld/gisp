@@ -44,8 +44,8 @@
     <div class="map_container">
 		<div id="map" class="map"></div>
 		<div class="custom_zoomcontrol radius_border"> 
-			<span onclick="zoomIn()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
-			<span onclick="zoomOut()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+			<span id="zoomControl" data-zoom="zoomin"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
+			<span id="zoomControl" data-zoom="zoomout"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
 		</div>	
 		<div class="search_wrap">
 		    <div id="menu_wrap" class="bg_white" data-simplebar>

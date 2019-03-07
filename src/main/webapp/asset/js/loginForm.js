@@ -42,12 +42,12 @@ $(document).ready(function() {
 	$('#btn-login').on('click', function() {
 		
 		$.ajax({
-			url: "/getAccountData.do",
-			type: "GET",
+			url: '/getAccountData.do',
+			type: 'GET',
 			data: {
-				"userid" : $('#userid').val()
+				'userid' : $('#userid').val()
 			},
-			dataType: "json",
+			dataType: 'json',
 			success: function(accountData) {
 				
 				if ($('#password').val() != accountData.password) {

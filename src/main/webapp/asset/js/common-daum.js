@@ -15,12 +15,12 @@ infowindow = new daum.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한
 function testListData(category) {
 	
 	$.ajax({
-        type: "GET",
-        url: "/selectTestList.do",
+        type: 'GET',
+        url: '/selectTestList.do',
         data: { 
-        	"category": category 
+        	'category': category 
         },
-        dataType : "json",
+        dataType : 'json',
         success: function(data, status){ //장소검색이 성공
         	displayTestListData(data, category);
         },
@@ -87,10 +87,10 @@ function searchPlaces() {
 // 다음, 카카오 api 통신
 function searchKeyword(keyword) {
     $.ajax({
-        type: "GET",
-        url: "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + keyword,
-        headers: {"Authorization": "KakaoAK 9171188a2bc0e55ea3d6e5009b0e0dba"},
-        dataType : "json",
+        type: 'GET',
+        url: 'https://dapi.kakao.com/v2/local/search/keyword.json?query=' + keyword,
+        headers: {'Authorization': 'KakaoAK 9171188a2bc0e55ea3d6e5009b0e0dba'},
+        dataType : 'json',
         success: function(data, status){ //장소검색이 완료됐을 때
         	data.meta.total_count != 0 ? displayPlaces(data) : alert('검색 결과가 존재하지 않습니다.');
         },
@@ -159,7 +159,7 @@ function displayPlaces(places) {
     map.setBounds(bounds);
     
     $(function() {
-    	$("#menu_wrap").slideDown();
+    	$('#menu_wrap').slideDown();
     });
 };
 
@@ -191,7 +191,7 @@ function getListItem(index, places, placePosition) {
     el.className = 'item';
     
     $(function() {
-    	$(document).on("click", '#info_' + (index + 1), function() {
+    	$(document).on('click', '#info_' + (index + 1), function() {
     		map.panTo(placePosition);
     	})
     });
@@ -256,16 +256,6 @@ function searchDetailAddrFromCoords(coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 };
 
-//지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수
-function zoomIn() {
-	map.setLevel(map.getLevel() - 1);
-};
-
-// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수
-function zoomOut() {
-	map.setLevel(map.getLevel() + 1);
-};
-
 function load(){
 	$(function() {
 		setTimeout(function(){
@@ -309,7 +299,7 @@ daum.maps.event.addListener(map, 'rightclick', function(mouseEvent) {
 	        map.panTo(mouseEvent.latLng);
 	        
 	        $(function() {
-	        	$(document).on("click", '#btn-infowindow-close', function() {
+	        	$(document).on('click', '#btn-infowindow-close', function() {
 	        		marker.setMap(null);
 	        		infowindow.close();
 	        	})
@@ -320,23 +310,26 @@ daum.maps.event.addListener(map, 'rightclick', function(mouseEvent) {
 
 // 장소검색, 목록 표시 jQeury 이벤트
 $(document).ready(function(){
-	var $submenu = $("#menu_wrap");
+	var $submenu = $('#menu_wrap');
 	$submenu.hide();
 	
-	$("#btn-search-close").click(function() {
+	$('#btn-search-close').click(function() {
 		if($submenu.is(":visible"))
 			$submenu.slideUp();
 	});
 		
 	$('input:checkbox[name="category"]').click(function() {
-		$('input:checkbox[name="category"]').each(function() {
-			if(this.checked) {
-	        	$('.overlay-loader').fadeIn('fast');
-	        	$submenu.hide();
-				testListData(this.value);
-			} else {
-				removeMarker();
-			}
-		});
+		if(this.checked) {
+        	$('.overlay-loader').fadeIn('fast');
+        	$submenu.hide();
+			testListData(this.value);
+		} else {
+			removeMarker();
+		}
+	});
+	
+	//지도 확대, 축소 컨트롤
+	$('span[id="zoomControl"]').click(function() {
+		map.setLevel($(this).attr('data-zoom') == 'zoomin' ? map.getLevel() - 1 : map.getLevel() + 1);
 	});
 });
