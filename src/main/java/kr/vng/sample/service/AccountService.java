@@ -33,6 +33,6 @@ public interface AccountService {
      * @param accountVO
      * @throws Exception
      */
-	public int insertAccount(final AccountVO accountVO);
+	public int register(final AccountVO accountVO);
 	
 }

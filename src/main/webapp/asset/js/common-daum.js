@@ -332,6 +332,7 @@ $(document).ready(function(){
 		$('input:checkbox[name="category"]').each(function() {
 			if(this.checked) {
 	        	$('.overlay-loader').fadeIn('fast');
+	        	$submenu.hide();
 				testListData(this.value);
 			} else {
 				removeMarker();

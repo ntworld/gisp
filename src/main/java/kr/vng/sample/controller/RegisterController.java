@@ -20,7 +20,7 @@ public class RegisterController extends AbstractController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String register(final AccountVO accountVO) throws SQLException {
 		
-		accountService.insertAccount(accountVO);
+		accountService.register(accountVO);
 		
 		return Constant.REDIRECT_LOGIN_PAGE;
 	}

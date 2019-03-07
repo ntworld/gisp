@@ -30,8 +30,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public int insertAccount(AccountVO accountVO) {
-		return accountDao.insertAccount(accountVO);
+	public int register(AccountVO accountVO) {
+		return accountDao.register(accountVO);
 	}
 
 }

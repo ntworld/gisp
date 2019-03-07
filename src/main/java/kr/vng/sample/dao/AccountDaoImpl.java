@@ -42,7 +42,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public int insertAccount(AccountVO accountVO) {
+	public int register(AccountVO accountVO) {
 		return sqlSession.insert(Constant.AccountMapper.REGISTER, accountVO);
 	}
 
