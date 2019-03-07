@@ -25,7 +25,7 @@ function testListData(category) {
         	displayTestListData(data, category);
         },
         complete: function() {
-			load();
+        	completeLoad();
 		},
         error: function(xhr, status, error) {
         	console.log(error);
@@ -92,7 +92,7 @@ function searchKeyword(keyword) {
         headers: {'Authorization': 'KakaoAK 9171188a2bc0e55ea3d6e5009b0e0dba'},
         dataType : 'json',
         success: function(data, status){ //장소검색이 완료됐을 때
-        	data.meta.total_count != 0 ? displayPlaces(data) : alert('검색 결과가 존재하지 않습니다.');
+        	data.meta.total_count != 0 ? displayPlaces(data.documents) : alert('검색 결과가 존재하지 않습니다.');
         },
         error: function(xhr, status, error) {
         	console.log(error);
@@ -117,39 +117,36 @@ function displayPlaces(places) {
     removeMarker();
 	
     // json형태로 받은 장소 데이터 가공
-	$.each(places, function(index, placesData) {
-	     
-	     for(var i = 0; i < placesData.length; i++) {
-	    	
-	    	 // 마커를 생성하고 지도에 표시
-	         var placePosition = new daum.maps.LatLng(placesData[i].y, placesData[i].x),
-	             marker = addMarker(placePosition, i), 
-	             itemEl = getListItem(i, placesData[i], placePosition); // 검색 결과 항목 Element를 생성
-	    	 
-	         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가
-	         bounds.extend(placePosition);
-	         
-	         // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시
-	         // mouseout 했을 때는 인포윈도우를 닫음
-	         (function(marker, title) {
-	         	
-	             daum.maps.event.addListener(marker, 'mouseover', function() {
-	                 displayInfowindow(marker, title);
-	             });
+    for(var i = 0; i < places.length; i++) {
+    	
+    	 // 마커를 생성하고 지도에 표시
+         var placePosition = new daum.maps.LatLng(places[i].y, places[i].x),
+             marker = addMarker(placePosition, i), 
+             itemEl = getListItem(i, places[i], placePosition); // 검색 결과 항목 Element를 생성
+    	 
+         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가
+         bounds.extend(placePosition);
+         
+         // 마커와 검색결과 항목에 mouseover 했을때 해당 장소에 인포윈도우에 장소명을 표시
+         // mouseout 했을 때는 인포윈도우를 닫음
+         (function(marker, title) {
+         	
+             daum.maps.event.addListener(marker, 'mouseover', function() {
+                 displayInfowindow(marker, title);
+             });
 
-	             daum.maps.event.addListener(marker, 'mouseout', function() {
-	                 infowindow.close();
-	             });
-	             
-	             itemEl.onclick =  function () {
-	                 displayInfowindow(marker, title);
-	             };
-	             
-	         })(marker, placesData[i].place_name);
+             daum.maps.event.addListener(marker, 'mouseout', function() {
+                 infowindow.close();
+             });
+             
+             itemEl.onclick =  function () {
+                 displayInfowindow(marker, title);
+             };
+             
+         })(marker, places[i].place_name);
 
-	         fragment.appendChild(itemEl);
-	     }
-	});
+         fragment.appendChild(itemEl);
+    }
 	
     // 검색결과 항목들을 검색결과 목록 Elemnet에 추가
     listEl.appendChild(fragment);
@@ -256,15 +253,12 @@ function searchDetailAddrFromCoords(coords, callback) {
     geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 };
 
-function load(){
+function completeLoad(){
 	$(function() {
-		setTimeout(function(){
-			$('.loaderContainer').addClass('load');
-		}, 500);
 		setTimeout(function(){
 			$('.loaderContainer').removeClass('load');
 			removeOverlay();
-		}, 3200);
+		}, 500);
 	});
 };
 
@@ -320,9 +314,13 @@ $(document).ready(function(){
 		
 	$('input:checkbox[name="category"]').click(function() {
 		if(this.checked) {
-        	$('.overlay-loader').fadeIn('fast');
-        	$submenu.hide();
-			testListData(this.value);
+			var category = $(this).val();
+			$submenu.hide();
+        	$('.overlay-loader').fadeIn(100);
+			$('.loaderContainer').addClass('load'); 
+			setTimeout(function() {
+				testListData(category);
+			}, 1500);
 		} else {
 			removeMarker();
 		}
