@@ -1,5 +1,5 @@
 # 개발환경
-	- Java 1.7 이상 
+	- Java 1.8 이상 
 	- Egovframework 3.6.0
 	- Spring framework 4.1.2
 	- maven 3.3.3
@@ -7,9 +7,7 @@
 	- Mybatis
 
 # History
-	
-	@ 2017-04-18
-		
+
 		- Log
 			> slf4j-log4j 설정(File, Console)
 			> log4jdbc-remix 설정(쿼리 및 결과 정렬)
